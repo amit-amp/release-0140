@@ -57,11 +57,21 @@ model Address {
 }
 
 model Product {
-  createdAt   DateTime @default(now())
+  createdAt   DateTime   @default(now())
   description String?
-  id          String   @id @default(cuid())
+  id          String     @id @default(cuid())
   itemPrice   Float?
   name        String?
   orders      Order[]
-  updatedAt   DateTime @updatedAt
+  updatedAt   DateTime   @updatedAt
+  warehouse   Warehouse? @relation(fields: [warehouseId], references: [id])
+  warehouseId String?
+}
+
+model Warehouse {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  name      String?
+  products  Product[]
+  updatedAt DateTime  @updatedAt
 }

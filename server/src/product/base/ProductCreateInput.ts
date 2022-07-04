@@ -19,6 +19,7 @@ import {
 } from "class-validator";
 import { OrderCreateNestedManyWithoutProductsInput } from "./OrderCreateNestedManyWithoutProductsInput";
 import { Type } from "class-transformer";
+import { WarehouseWhereUniqueInput } from "../../warehouse/base/WarehouseWhereUniqueInput";
 @InputType()
 class ProductCreateInput {
   @ApiProperty({
@@ -65,5 +66,17 @@ class ProductCreateInput {
     nullable: true,
   })
   orders?: OrderCreateNestedManyWithoutProductsInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => WarehouseWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => WarehouseWhereUniqueInput)
+  @IsOptional()
+  @Field(() => WarehouseWhereUniqueInput, {
+    nullable: true,
+  })
+  warehouse?: WarehouseWhereUniqueInput | null;
 }
 export { ProductCreateInput };

@@ -44,7 +44,7 @@ const App = (): React.ReactElement => {
   return (
     <div className="App">
       <Admin
-        title={"Sample app"}
+        title={"code-generation-test"}
         dataProvider={dataProvider}
         authProvider={jwtAuthProvider}
         theme={theme}

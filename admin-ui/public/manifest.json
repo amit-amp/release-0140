@@ -1,6 +1,6 @@
 {
-  "short_name": "Sample app",
-  "name": "Sample app",
+  "short_name": "code-generation-test",
+  "name": "code-generation-test",
   "icons": [
     {
       "src": "favicon.ico",

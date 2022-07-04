@@ -1,5 +1,5 @@
 {
-  "name": "@code-generation-test/server",
+  "name": "@sample-app/server",
   "private": true,
   "scripts": {
     "start": "nest start",

@@ -1,5 +1,5 @@
 {
-  "name": "@code-generation-test/admin",
+  "name": "@sample-app/admin",
   "private": true,
   "dependencies": {
     "@apollo/client": "3.3.18",

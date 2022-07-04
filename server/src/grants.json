@@ -262,11 +262,5 @@
     "resource": "Product",
     "action": "read:any",
     "attributes": "*,!itemPrice"
-  },
-  {
-    "role": "superman",
-    "resource": "Warehouse",
-    "action": "delete:any",
-    "attributes": "*"
   }
 ]

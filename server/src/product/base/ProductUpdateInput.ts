@@ -19,7 +19,6 @@ import {
 } from "class-validator";
 import { OrderUpdateManyWithoutProductsInput } from "./OrderUpdateManyWithoutProductsInput";
 import { Type } from "class-transformer";
-import { WarehouseWhereUniqueInput } from "../../warehouse/base/WarehouseWhereUniqueInput";
 @InputType()
 class ProductUpdateInput {
   @ApiProperty({
@@ -66,17 +65,5 @@ class ProductUpdateInput {
     nullable: true,
   })
   orders?: OrderUpdateManyWithoutProductsInput;
-
-  @ApiProperty({
-    required: false,
-    type: () => WarehouseWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => WarehouseWhereUniqueInput)
-  @IsOptional()
-  @Field(() => WarehouseWhereUniqueInput, {
-    nullable: true,
-  })
-  warehouse?: WarehouseWhereUniqueInput | null;
 }
 export { ProductUpdateInput };

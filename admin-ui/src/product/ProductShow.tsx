@@ -6,13 +6,14 @@ import {
   ShowProps,
   DateField,
   TextField,
+  ReferenceField,
   ReferenceManyField,
   Datagrid,
-  ReferenceField,
 } from "react-admin";
 
 import { CUSTOMER_TITLE_FIELD } from "../customer/CustomerTitle";
 import { PRODUCT_TITLE_FIELD } from "./ProductTitle";
+import { WAREHOUSE_TITLE_FIELD } from "../warehouse/WarehouseTitle";
 
 export const ProductShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -24,6 +25,13 @@ export const ProductShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Item Price" source="itemPrice" />
         <TextField label="Name" source="name" />
         <DateField source="updatedAt" label="Updated At" />
+        <ReferenceField
+          label="Warehouse"
+          source="warehouse.id"
+          reference="Warehouse"
+        >
+          <TextField source={WAREHOUSE_TITLE_FIELD} />
+        </ReferenceField>
         <ReferenceManyField reference="Order" target="ProductId" label="Orders">
           <Datagrid rowClick="show">
             <DateField source="createdAt" label="Created At" />

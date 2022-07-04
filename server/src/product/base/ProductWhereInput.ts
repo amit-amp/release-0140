@@ -17,7 +17,6 @@ import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
 import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 import { OrderListRelationFilter } from "../../order/base/OrderListRelationFilter";
-import { WarehouseWhereUniqueInput } from "../../warehouse/base/WarehouseWhereUniqueInput";
 @InputType()
 class ProductWhereInput {
   @ApiProperty({
@@ -75,17 +74,5 @@ class ProductWhereInput {
     nullable: true,
   })
   orders?: OrderListRelationFilter;
-
-  @ApiProperty({
-    required: false,
-    type: () => WarehouseWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => WarehouseWhereUniqueInput)
-  @IsOptional()
-  @Field(() => WarehouseWhereUniqueInput, {
-    nullable: true,
-  })
-  warehouse?: WarehouseWhereUniqueInput;
 }
 export { ProductWhereInput };

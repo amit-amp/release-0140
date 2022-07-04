@@ -8,12 +8,9 @@ import {
   NumberInput,
   ReferenceArrayInput,
   SelectArrayInput,
-  ReferenceInput,
-  SelectInput,
 } from "react-admin";
 
 import { OrderTitle } from "../order/OrderTitle";
-import { WarehouseTitle } from "../warehouse/WarehouseTitle";
 
 export const ProductCreate = (props: CreateProps): React.ReactElement => {
   return (
@@ -30,13 +27,6 @@ export const ProductCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={OrderTitle} />
         </ReferenceArrayInput>
-        <ReferenceInput
-          source="warehouse.id"
-          reference="Warehouse"
-          label="Warehouse"
-        >
-          <SelectInput optionText={WarehouseTitle} />
-        </ReferenceInput>
       </SimpleForm>
     </Create>
   );

@@ -19,7 +19,6 @@ import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { Public } from "../../decorators/public.decorator";
 import { CreateProductArgs } from "./CreateProductArgs";
 import { UpdateProductArgs } from "./UpdateProductArgs";
 import { DeleteProductArgs } from "./DeleteProductArgs";
@@ -28,7 +27,6 @@ import { ProductFindUniqueArgs } from "./ProductFindUniqueArgs";
 import { Product } from "./Product";
 import { OrderFindManyArgs } from "../../order/base/OrderFindManyArgs";
 import { Order } from "../../order/base/Order";
-import { Warehouse } from "../../warehouse/base/Warehouse";
 import { ProductService } from "../product.service";
 
 @graphql.Resolver(() => Product)
@@ -100,15 +98,7 @@ export class ProductResolverBase {
   ): Promise<Product> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        warehouse: args.data.warehouse
-          ? {
-              connect: args.data.warehouse,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -125,15 +115,7 @@ export class ProductResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          warehouse: args.data.warehouse
-            ? {
-                connect: args.data.warehouse,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -184,18 +166,5 @@ export class ProductResolverBase {
     }
 
     return results;
-  }
-
-  @Public()
-  @graphql.ResolveField(() => Warehouse, { nullable: true })
-  async warehouse(
-    @graphql.Parent() parent: Product
-  ): Promise<Warehouse | null> {
-    const result = await this.service.getWarehouse(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 }
